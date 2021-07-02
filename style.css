@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+:root {
+    --blue: #eaf0f8;
+    --purple-baby: #e8f1ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    background: var(--blue);
+    font-family: "Roboto", sans-serif;
+}
+
+.active{
+    color: #9b7af3c2;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: 60px 300px auto auto;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9b7af3c2;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+}
+
+.cards figure {
+    width: 250px;
+    height: 250px;
+    margin: 20px 0;
+    border-radius: 50%;
+    box-shadow: 10px 10px 30px #d1d9e6, -10px -10px 30px #ffffff;
+    overflow: hidden;
+}
+
+figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.info .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.info .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #563f94be;
+}
+
+.info .text h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.info .text p {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.info .bar {
+    width: 100%;
+    max-width: 720px;
+    padding: 0 30px;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info .bar .line {
+    width: 100%;
+    max-width: 720px;
+    height: 5px;
+    align-self: baseline;
+    background-color: #d4cdea;
+    border-radius: 25px;
+}
+
+.info .bar .progress-bar {
+    width: 0%;
+    max-width: 720px;
+    height: 5px;
+    align-self: baseline;
+    background-color: #9b7af3c2;
+    border-radius: 25px;
+}
+
+.info .bar .time {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #563f94de;
+    margin: 5px 0;
+}
+
+/* .buttons {
+    
+} */
+
+.buttons-wrapper{
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttons div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 10px 10px 30px #d1d9e6, -10px -10px 30px #ffffff;
+    color: #D1C2FD;
+    cursor: pointer;
+}
+
+.buttons .random {
+    width: 37px;
+    height: 37px;
+    font-size: 1.5rem;
+}
+.buttons .back {
+    width: 37px;
+    height: 37px;
+    font-size: 1.5rem;
+}
+.buttons .play {
+    width: 75px;
+    height: 75px;
+    font-size: 3rem;
+}
+.buttons .next {
+    width: 37px;
+    height: 37px;
+    font-size: 1.5rem;
+}
+.buttons .loop {
+    width: 37px;
+    height: 37px;
+    font-size: 1.5rem;
+}
+
+.buttons .play:active {
+    width: 70px;
+    height: 70px;
+    font-size: 2.95rem;
+}
+
+
+.buttons .small:active{
+    width: 32px;
+    height: 32px;
+    font-size: 1.45rem;
+}
+
+@media (min-width: 425px) {
+    .buttons .random {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+    .buttons .back {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+    .buttons .play {
+        width: 100px;
+        height: 100px;
+        font-size: 4rem;
+    }
+    .buttons .next {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+    .buttons .loop {
+        width: 50px;
+        height: 50px;
+        font-size: 2rem;
+    }
+
+    .buttons .play:active {
+        width: 95px;
+        height: 95px;
+        font-size: 3.95rem;
+    }
+
+    .buttons .small:active{
+        width: 45px;
+        height: 45px;
+        font-size: 1.95rem;
+    }
+}
+
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+            integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+            crossorigin="anonymous"
+        />
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="header">
+                <h4>Playing now</h4>
+            </header>
+
+            <section class="cards">
+                <figure>
+                    <img src="https://img.mandarake.co.jp/webshopimg/04/00/553/0400031553/04000315532.jpg" alt="Song image" />
+                </figure>
+            </section>
+
+            <section class="info">
+                <div class="container">
+                    <div class="text">
+                        <h3>Doll Judgement</h3>
+                        <p>Touhou 7</p>
+                    </div>
+
+                    <div class="bar">
+                        <audio src="./assets/songs/song.mp3" preload="metadata"></audio>
+                        <div class="line">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <div class="time">
+                            <p class="current-time">0:00</p>
+                            <p class="end-time"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="buttons">
+                <section class="buttons-wrapper">
+                    <div class="random small">
+                        <i class="fas fa-random"></i>
+                    </div>
+
+                    <div class="back small">
+                        <i class="fas fa-backward"></i>
+                    </div>
+
+                    <div class="play">
+                        <i class="fas fa-play"></i>
+                    </div>
+
+                    <div class="next small">
+                        <i class="fas fa-forward"></i>
+                    </div>
+
+                    <div class="loop small">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                </section>
+            </footer>
+        </div>
+    </body>
+
+    <script>
+        class MediaPlayer {
+            constructor(mediaElement, playBtn, loopBtn) {
+                this.media = mediaElement
+                this.playBtn = playBtn
+                this.loopBtn = loopBtn
+            }
+
+            togglePlay() {
+                if (!this.media.paused) {
+                    this.media.pause()
+                } else {
+                    this.media.play()
+                }
+            }
+
+            forward(){
+                if (this.media.currentTime +11 < this.media.duration){
+                    this.media.currentTime += 10;
+                }
+
+            }
+
+            backward(){
+                if (this.media.currentTime -11 > 0){
+                    this.media.currentTime -= 10;
+                }
+            }
+
+            toggleLoop(){
+                this.media.loop = !this.media.loop
+                this.loopBtn.firstElementChild.classList.toggle("active")
+            }
+
+            togglePlayIcon() {
+                if (!this.media.paused) {
+                    this.playBtn.firstElementChild.classList.replace("fa-play", "fa-pause")
+                } else {
+                    this.playBtn.firstElementChild.classList.replace("fa-pause", "fa-play")
+                }
+            }
+        }
+
+        const $audio = document.querySelector("audio")
+
+        const $backward = document.querySelector(".back")
+        const $play = document.querySelector(".play")
+        const $forward = document.querySelector(".next")
+        const $loop = document.querySelector(".loop")
+
+        const $endTime = document.querySelector(".end-time")
+        const $currentTime = document.querySelector(".current-time")
+
+        const $progressBar = document.querySelector(".progress-bar")
+
+        const player = new MediaPlayer($audio, $play, $loop)
+
+
+        function getTime(time){
+            let minutes = Math.floor(time / 60)
+            let seconds = Math.round(time - minutes * 60)
+            return `${minutes}:${seconds}`
+        }
+        
+
+        // Get the duration when de metadata is loaded and transforms it into minutes
+        $audio.onloadedmetadata = () => {
+            $endTime.textContent += getTime($audio.duration)
+        }
+
+        // Loads the progress Bar and the time the song has been played.
+        $audio.ontimeupdate = () =>{
+            $currentTime.textContent = getTime($audio.currentTime)
+            
+            let percentage = ($audio.currentTime*100) / $audio.duration
+            $progressBar.style.width = `${percentage}%`
+        }
+        
+
+        $play.onclick = () => {
+            player.togglePlay()
+            player.togglePlayIcon()
+        }
+
+        $loop.onclick = () =>{
+            player.toggleLoop()            
+        }
+
+        $forward.onclick=()=>{
+            player.forward()
+        }
+
+        $backward.onclick=()=>{
+            player.backward()
+        }
+
+    </script>
+</html>
